@@ -153,7 +153,7 @@ const ProductDetail = () => {
               </td>
               <td align="center">
                 <input
-                  type="text"
+                  type="date"
                   defaultValue={OrderDate}
                   onChange={(e) => updateNewData(e, "OrderDate")}
                 />

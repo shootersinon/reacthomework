@@ -5,6 +5,7 @@ import CustomerList from 'src/pages/CustomerList';
 import Dashboard from 'src/pages/Dashboard';
 import Login from 'src/pages/Login';
 import ProductList from 'src/pages/ProductDetail';
+import Lastpage from 'src/pages/Lastpage';
 import Detail from 'src/pages/Detail';
 import Formp from 'src/pages/Formp';
 import FormD from 'src/pages/FormD';
@@ -20,6 +21,7 @@ const routes = [
       { path: 'products', element: <ProductList /> },
       { path: 'Detail', element: <Detail /> },
       { path: 'form', element: <Formp /> },
+      { path: 'Lastpage', element: <Lastpage /> },
       { path: 'FormD', element: <FormD /> },
       { path: 'FormD2', element: <FormD2 /> },
       { path: '*', element: <Navigate to="/404" /> }

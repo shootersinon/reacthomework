@@ -11,9 +11,7 @@ header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers
 // DB connection: $db_connection from db_connection.php
 require 'db_connection.php';
 
-$allUsers = mysqli_query($db_connection, "SELECT EmpId as id,EmpName as user_name,JobTitle as job,Deptname as dept ,Phone as user_phone 
-											FROM `employee`,`dept`
-											WHERE employee.DeptId=dept.DeptId");
+$allUsers = mysqli_query($db_connection, "SELECT EmpId as id, EmpName as user_name, JobTitle as user_email FROM `employee`");
 if (mysqli_num_rows($allUsers) > 0) {
     $all_users = mysqli_fetch_all($allUsers, MYSQLI_ASSOC);
     // json_encode([],JSON_UNESCAPED_UNICODE) 參數一定要加才會正確顯示中文

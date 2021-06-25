@@ -7,27 +7,105 @@ export const Actions = () => {
   let [products, setproducts] = useState([]);
   let [details, setdetails] = useState([]);
   let [pdetails, setpdetails] = useState([]);
+  let [customers, setcustomers] = useState([]);
   let [order, setorder] = useState("");
+  
 
   let [productLength, setproductLength] = useState(null);
   let [detailsLength, setdetailsLength] = useState(null);
   let [pdetailsLength, setpdetailsLength] = useState(null);
-  useEffect(() => {
+  let [customersLength, setcustomersLength] = useState(null);
+  const eff = () =>{
     fetch("http://localhost/php-react/all-pdetails.php")
+    .then((res) => {
+      return res.json();
+    })
+    .then((data) => {
+      if (data.success) {
+        setpdetails(data.pdetails);
+        setpdetailsLength(true);
+      } else {
+        setpdetailsLength(0);
+      }
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+  }
+  const eff2 = () =>{
+    fetch("http://localhost/php-react/all-product.php")
       .then((res) => {
         return res.json();
       })
       .then((data) => {
         if (data.success) {
-          setpdetails(data.pdetails);
-          setpdetailsLength(true);
+          setproducts(data.products);
+          setproductLength(true);
         } else {
-          setpdetailsLength(0);
+          setproductLength(0);
         }
       })
       .catch((err) => {
         console.log(err);
       });
+    }
+    const eff3 = () =>{
+      fetch("http://localhost/php-react/all-details.php")
+      .then((res) => {
+        return res.json();
+      })
+      .then((data) => {
+        if (data.success) {
+          setdetails(data.details);
+          setdetailsLength(true);
+        } else {
+          setdetailsLength(0);
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+    }
+    const eff4 = () =>{
+      fetch("http://localhost/php-react/all-customer.php")
+      .then((res) => {
+        return res.json();
+      })
+      .then((data) => {
+        if (data.success) {
+          setcustomers(data.customers);
+          setcustomersLength(true);
+        } else {
+          setcustomersLength(0);
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+    }
+    const eff5 = () =>{
+      fetch("http://localhost/php-react/all-users.php")
+      .then((res) => {
+        return res.json();
+      })
+      .then((data) => {
+        if (data.success) {
+          setUsers(data.users);
+          setUserLength(true);
+        } else {
+          setUserLength(0);
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
+  useEffect(() => {
+    eff()
+    eff2()
+    eff3()
+    eff4()
+    eff5()
   }, []);
   const insertpdetails = (newpdetails) => {
     console.log(newpdetails)
@@ -59,40 +137,6 @@ export const Actions = () => {
         console.log(err);
       });
   };
-  useEffect(() => {
-    fetch("http://localhost/php-react/all-product.php")
-      .then((res) => {
-        return res.json();
-      })
-      .then((data) => {
-        if (data.success) {
-          setproducts(data.products);
-          setproductLength(true);
-        } else {
-          setproductLength(0);
-        }
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, []);
-  useEffect(() => {
-    fetch("http://localhost/php-react/all-details.php")
-      .then((res) => {
-        return res.json();
-      })
-      .then((data) => {
-        if (data.success) {
-          setdetails(data.details);
-          setdetailsLength(true);
-        } else {
-          setdetailsLength(0);
-        }
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, []);
   const insertdetails = (newdetails) => {
     fetch("http://localhost/php-react/add-details.php", {
       method: "POST",
@@ -116,7 +160,7 @@ export const Actions = () => {
         } else {
           alert(data.msg);
         }
-      })
+      }) 
       .catch((err) => {
         console.log(err);
       });
@@ -401,29 +445,16 @@ fetch("http://localhost/php-react/delete-pdetails.php", {
     console.log(err);
   });
 };
-  useEffect(() => {
-    fetch("http://localhost/php-react/all-users.php")
-      .then((res) => {
-        return res.json();
-      })
-      .then((data) => {
-        if (data.success) {
-          setUsers(data.users);
-          setUserLength(true);
-        } else {
-          setUserLength(0);
-        }
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, []);
 
   // Inserting a new user into the database.
 
 
 
   return {
+    customersLength,
+    setcustomersLength,
+    customers, 
+    setcustomers,
     order,
     setorder,
     insertdetails,

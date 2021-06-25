@@ -46,6 +46,11 @@ const items = [
     href: '/app/products',
     icon: ShoppingBagIcon,
     title: '產品明細'
+  },
+  {
+    href: '/app/Lastpage',
+    icon: ShoppingBagIcon,
+    title: '銷售報表'
   }
 ];
 
